@@ -23,8 +23,15 @@ class PostController extends Controller
 
     function getOne($id)
     {
-
-        $this->JSON($this->postManager->getOne($id));
+        $post = $this->postManager->getOne($id);
+        $listCommentaires = $this->postManager->getCommentByPost($id);
+        $creatorPost = $this->postManager->getCreatorOfPost($id);
+        $creatorComment = $this->postManager->getCreatorOfComment($listCommentaires);
+        $this->addViewParams("post",$post);
+        $this->addViewParams("listCommentaires", $listCommentaires);
+        $this->addViewParams("creatorPost", $creatorPost);
+        $this->addViewParams("creatorComment", $creatorComment);
+        $this->View("forum");
     }
 
     function create()
