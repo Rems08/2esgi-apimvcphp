@@ -4,7 +4,7 @@
 class Comment extends \Model\Model{
     public function __construct()
     {
-        parent::__construct("post");
+        parent::__construct("comment");
     }
 
     public function getCommentById($id)
