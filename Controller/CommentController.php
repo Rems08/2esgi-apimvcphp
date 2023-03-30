@@ -65,12 +65,12 @@ class CommentController extends Controller
                 $comment->postID = $_POST->postID;
                 var_dump($comment);
                 if ($this->commentManager->update($comment)) {
-                    $this->JSONMessage("comment mis à jour");
+                    $this->JSONMessage("commentaire mis à jour");
                 } else {
-                    $this->JSONMessage("comment non trouvé");
+                    $this->JSONMessage("commentaire non trouvé");
                 }
             }else{
-                $this->JSONMessage("Vous n'avez pas les droits pour modifier cet utilisateur");
+                $this->JSONMessage("Vous n'avez pas les droits pour modifier cet commentaire");
             }
         }
     }
@@ -78,9 +78,9 @@ class CommentController extends Controller
     function delete($id)
     {
         if ($this->commentManager->delete($id)) {
-            $this->JSONMessage("comment supprimé");
+            $this->JSONMessage("commentaire supprimé");
         } else {
-            $this->JSONMessage("comment non trouvé");
+            $this->JSONMessage("commentaire non trouvé");
         }
     }   
 }
