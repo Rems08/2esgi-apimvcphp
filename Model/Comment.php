@@ -14,4 +14,5 @@ class Comment extends \Model\Model{
         $req->setFetchMode(\PDO::FETCH_OBJ);
         return $req->fetch();
     }
+
 }
