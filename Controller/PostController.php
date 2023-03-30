@@ -50,22 +50,24 @@ class PostController extends Controller
     {
         $auth = getAuth();
         if($auth){
+            $creatorID = $this->postManager->getOne($id)->creatorID;
             if($auth->id == $creatorID){
-                $data = json_decode(file_get_contents("php://input"));
                 $post = new \stdClass();
                 $post->id = $id;
-                $post->name = $data->name;
-                $post->content = $data->content;
-                $post->date = $data->date;
-                var_dump($post);
+                var_dump($_POST);
+                $post->name = $_POST["name"];
+                $post->content = $_POST["content"];
+                $post->date = $_POST["date"];
                 if ($this->postManager->update($post)) {
                     $this->JSONMessage("Post mis à jour");
                 } else {
                     $this->JSONMessage("Post non trouvé");
                 }
             }else{
-                $this->JSONMessage("Vous n'avez pas les droits pour modifier cet utilisateur");
+                $this->JSONMessage("Vous n'avez pas les droits pour modifier ce post");
             }
+        }else{
+            $this->JSONMessage("Vous n'êtes pas authentifié.");
         }
     }
 
@@ -73,13 +75,18 @@ class PostController extends Controller
     {
         $auth = getAuth();
         if($auth){
+            $creatorID = $this->postManager->getOne($id)->creatorID;
             if($auth->id == $creatorID){
                 if ($this->postManager->delete($id)) {
                     $this->JSONMessage("Post supprimé");
                 } else {
                     $this->JSONMessage("Post non trouvé");
                 }
+            }else{
+                $this->JSONMessage("Vous n'avez pas les droits pour supprimer ce post");
             }
+        }else{
+            $this->JSONMessage("Vous n'êtes pas authentifié.");
         }
     }   
 }
