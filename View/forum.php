@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="View/forum.css">
+    <link rel="stylesheet" href="../View/forum.css">
 </head>
 
 <body>
@@ -17,9 +17,12 @@
             <p><div class="post-content"><?= $post->content; ?></div></p>
             <p><div class="post-date"><?= $post->date; ?></div></p>
             </div>
+            <p>Commentaire : </p>
             <?php foreach ($listCommentaires as $commentaire) { ?>
-                <p><div class="creatorComment-email"><?= $creatorComment->email?></div></p>
-                <p><div class="commentaire-content"><?= $commentaire->content?></div></p>
+                <div class="Comment">
+                    <p><div class="creatorComment-email"><?= $creatorComment->email?></div></p>
+                    <p><div class="commentaire-content"><?= $commentaire->content?></div></p>
+                </div>
             <?php } ?>
     </div>
 </body>
