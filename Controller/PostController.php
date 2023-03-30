@@ -18,7 +18,7 @@ class PostController extends Controller
         $listpost = $this->postManager->getAll();
         $this->addViewParams("posts",$listpost);
         $this->View("listpost");
-        //$this->JSON($this->postPost->getAll());
+        //$this->JSON($this->postManager->getAll());
     }
 
     function getOne($id)

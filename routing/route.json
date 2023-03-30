@@ -90,31 +90,31 @@
     "action": "delete",
     "param": ["id"]
 }, {
-    "path": "/Commentaire",
+    "path": "/Comment",
     "method": "GET",
-    "controller": "Commentaire",
+    "controller": "Comment",
     "action": "getAll"
 }, {
-    "path": "/Commentaire/([0-9]*)",
+    "path": "/Comment/([0-9]*)",
     "method": "GET",
-    "controller": "Commentaire",
+    "controller": "Comment",
     "action": "getOne",
     "param": ["id"]
 }, {
-    "path": "/Commentaire/([0-9]*)",
+    "path": "/Comment",
     "method": "POST",
-    "controller": "Commentaire",
+    "controller": "Comment",
     "action": "create"
 }, {
-    "path": "/Commentaire/([0-9]*)",
+    "path": "/Comment/([0-9]*)",
     "method": "PUT",
-    "controller": "Commentaire",
+    "controller": "Comment",
     "action": "update",
     "param": ["id"]
 }, {
-    "path": "/Commentaire/([0-9]*)",
+    "path": "/Comment/([0-9]*)",
     "method": "DELETE",
-    "controller": "Commentaire",
+    "controller": "Comment",
     "action": "delete",
     "param": ["id"]
 }]
