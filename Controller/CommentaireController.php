@@ -16,9 +16,9 @@ class CommentaireController extends Controller
     function getAll()
     {
         $listcommentaire = $this->commentaireManager->getAll();
-        $this->addViewParams("commentaires",$listcommentaire);
-        $this->View("listcommentaire");
-        //$this->JSON($this->commentairecommentaire->getAll());
+        //$this->addViewParams("commentaires",$listcommentaire);
+        //$this->View("listcommentaire");
+        $this->JSON($this->commentaireManager->getAll());
     }
 
     function getOne($id)
