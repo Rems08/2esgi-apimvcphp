@@ -35,32 +35,8 @@
     "path": "/User",
     "method": "DELETE",
     "controller": "User",
-    "action": "delete"
-}, {
-    "path": "/Product",
-    "method": "GET",
-    "controller": "Product",
-    "action": "getAll"
-}, {
-    "path": "/Product/([0-9]*)",
-    "method": "GET",
-    "controller": "Product",
-    "action": "getOne"
-}, {
-    "path": "/Product",
-    "method": "POST",
-    "controller": "Product",
-    "action": "create"
-}, {
-    "path": "/Product",
-    "method": "PUT",
-    "controller": "Product",
-    "action": "update"
-}, {
-    "path": "/Product",
-    "method": "DELETE",
-    "controller": "Product",
-    "action": "delete"
+    "action": "delete",
+    "auth": true
 },  {
     "path": "/Post",
     "method": "GET",
@@ -76,19 +52,22 @@
     "path": "/Post",
     "method": "POST",
     "controller": "Post",
-    "action": "create"
+    "action": "create",
+    "auth": true
 }, {
     "path": "/Post/([0-9]*)",
     "method": "POST",
     "controller": "Post",
     "action": "update",
-    "param": ["id"]
+    "param": ["id"],
+    "auth": true
 }, {
     "path": "/Post/([0-9]*)",
     "method": "DELETE",
     "controller": "Post",
     "action": "delete",
-    "param": ["id"]
+    "param": ["id"],
+    "auth": true
 }, {
     "path": "/Comment",
     "method": "GET",
@@ -104,17 +83,20 @@
     "path": "/Comment",
     "method": "POST",
     "controller": "Comment",
-    "action": "create"
+    "action": "create",
+    "auth": true
 }, {
     "path": "/Comment/([0-9]*)",
-    "method": "PUT",
+    "method": "POST",
     "controller": "Comment",
     "action": "update",
-    "param": ["id"]
+    "param": ["id"],
+    "auth": true
 }, {
     "path": "/Comment/([0-9]*)",
     "method": "DELETE",
     "controller": "Comment",
     "action": "delete",
-    "param": ["id"]
+    "param": ["id"],
+    "auth": true
 }]

@@ -61,10 +61,10 @@ class CommentController extends Controller
             $comment = $this->commentManager->getOne($id)->userID;
             if($auth->id == $comment){
                 $comment = new \stdClass();
-                $comment->content = $_POST->content;
+                $comment->id = $id;
+                $comment->content = $_POST["content"];
                 $comment->userID = $auth->id;
-                $comment->postID = $_POST->postID;
-                var_dump($comment);
+                $comment->postID = $_POST["postID"];
                 if ($this->commentManager->update($comment)) {
                     $this->JSONMessage("commentaire mis à jour");
                 } else {
@@ -72,9 +72,9 @@ class CommentController extends Controller
                 }
             }else{
                 $this->JSONMessage("Vous n'avez pas les droits pour modifier cet commentaire");
-            }else{
-                $this->JSONMessage("Vous n'êtes pas authentifié.");
             }
+        }else{
+            $this->JSONMessage("Vous n'êtes pas authentifié.");
         }
     }
 
