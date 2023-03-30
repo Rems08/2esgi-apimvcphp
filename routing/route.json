@@ -79,7 +79,7 @@
     "action": "create"
 }, {
     "path": "/Post/([0-9]*)",
-    "method": "PUT",
+    "method": "POST",
     "controller": "Post",
     "action": "update",
     "param": ["id"]

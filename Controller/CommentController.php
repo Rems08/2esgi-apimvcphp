@@ -57,29 +57,41 @@ class CommentController extends Controller
     {
         $auth = getAuth();
         if($auth){
-            if($auth->id == $comment->userID){
+            $comment = $this->commentManager->getOne($id)->userID;
+            if($auth->id == $comment){
                 $comment = new \stdClass();
                 $comment->content = $_POST->content;
                 $comment->userID = $auth->id;
                 $comment->postID = $_POST->postID;
                 var_dump($comment);
                 if ($this->commentManager->update($comment)) {
-                    $this->JSONMessage("comment mis à jour");
+                    $this->JSONMessage("commentaire mis à jour");
                 } else {
-                    $this->JSONMessage("comment non trouvé");
+                    $this->JSONMessage("commentaire non trouvé");
                 }
             }else{
-                $this->JSONMessage("Vous n'avez pas les droits pour modifier cet utilisateur");
+                $this->JSONMessage("Vous n'avez pas les droits pour modifier cet commentaire");
+            }else{
+                $this->JSONMessage("Vous n'êtes pas authentifié.");
             }
         }
     }
 
     function delete($id)
-    {
-        if ($this->commentManager->delete($id)) {
-            $this->JSONMessage("comment supprimé");
-        } else {
-            $this->JSONMessage("comment non trouvé");
+    {   $auth = getAuth();
+        if($auth){
+            $comment = $this->commentManager->getOne($id)->userID;
+            if($auth->id == $comment){
+                if ($this->commentManager->delete($id)) {
+                    $this->JSONMessage("commentaire supprimé");
+                } else {
+                    $this->JSONMessage("commentaire non trouvé");
+                }
+            }else{
+                $this->JSONMessage("Vous n'avez pas les droits pour supprimer cet commentaire");
+            }
+        }else{
+            $this->JSONMessage("Vous n'êtes pas authentifié.");
         }
     }   
 }
