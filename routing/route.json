@@ -101,7 +101,7 @@
     "action": "getOne",
     "param": ["id"]
 }, {
-    "path": "/Comment/([0-9]*)",
+    "path": "/Comment",
     "method": "POST",
     "controller": "Comment",
     "action": "create"

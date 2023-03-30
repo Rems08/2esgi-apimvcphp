@@ -11,6 +11,8 @@ class CommentController extends Controller
     public function __construct()
     {
         $this->commentManager = new \Model\Comment();
+        $this->postManager = new \Model\Post();
+
     }
 
     function getAll()
@@ -30,17 +32,23 @@ class CommentController extends Controller
     function create()
     {
         $auth = getAuth();
-        if($auth){
-            $comment = new \stdClass();
-            $comment->id = $_comment["id"];
-            $comment->content = $_comment["content"];
-            $comment->userID = $auth->id;
-            $comment->postID = $_comment["postID"];
-            // $comment->login = $_comment["login"];
-            // $comment->password = $_comment["password"];
-            $this->commentManager->create($comment);
+        $post = $this->postManager->getPostById($_POST["postID"]);
 
-            $this->JSONMessage("commentaire créé");
+
+        if($auth){
+            if($post != false){
+                $comment = new \stdClass();
+                $comment->content = $_POST["content"];
+                $comment->userID = $auth->id;
+                $comment->postID = $_POST["postID"];
+                // $comment->login = $_comment["login"];
+                // $comment->password = $_comment["password"];
+                $this->commentManager->create($comment);
+
+                $this->JSONMessage("commentaire créé");
+            }else {
+                $this->JSONMessage("Ce post n'éxiste pas");
+            }
         }else{
             $this->JSONMessage("Vous n'êtes pas authentifié.");
         }
@@ -50,13 +58,11 @@ class CommentController extends Controller
     {
         $auth = getAuth();
         if($auth){
-            if($auth->id == $creatorID){
-                $data = json_decode(file_get_contents("php://input"));
+            if($auth->id == $comment->userID){
                 $comment = new \stdClass();
-                $comment->id = $id;
-                $comment->name = $data->name;
-                $comment->content = $data->content;
-                $comment->date = $data->date;
+                $comment->content = $_POST->content;
+                $comment->userID = $auth->id;
+                $comment->postID = $_POST->postID;
                 var_dump($comment);
                 if ($this->commentManager->update($comment)) {
                     $this->JSONMessage("comment mis à jour");
