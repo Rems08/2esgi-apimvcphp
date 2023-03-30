@@ -11,6 +11,7 @@ class CommentController extends Controller
     public function __construct()
     {
         $this->commentManager = new \Model\Comment();
+        $this->postManager = new \Model\Post();
 
     }
 
